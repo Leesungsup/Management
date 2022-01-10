@@ -6,9 +6,11 @@ function Customer(props) {
         <div>
             <TableRow>
                 <TableCell>{props.id}</TableCell>
-                <TableCell><img src={props.img} alt='profile'/></TableCell>
+                <TableCell><img src={props.image} alt="profile" /></TableCell>
                 <TableCell>{props.name}</TableCell>
-                <TableCell>{props.birth}</TableCell>
+                <TableCell>{props.birthday}</TableCell>
+                <TableCell>{props.gender}</TableCell>
+                <TableCell>{props.job}</TableCell>
             </TableRow>
         </div>
     )

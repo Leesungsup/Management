@@ -9,7 +9,7 @@ app.get('/api/hello',(req,res)=>{
     console.log('hello')
     res.send({message:'Hello Express!'});
 });
-app.get('/api/customer',(req,res)=>{
+app.get('/api/customers',(req,res)=>{
     res.send([
         {
         'id': 1,

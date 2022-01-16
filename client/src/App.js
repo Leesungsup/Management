@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Customer from './components/Customer'
+import Customer from './Components/Customer'
 import './App.css';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -7,6 +7,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableBody from '@material-ui/core/TableBody';
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -26,7 +27,7 @@ const styles = theme => ({
 class App extends Component {
 
   state = {
-    customers: '',
+    customers: [],
     completed: 0
   }
 
@@ -65,7 +66,7 @@ class App extends Component {
           </TableHead>
           <TableBody>
             {this.state.customers ? this.state.customers.map(c => {
-              return <Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job} />
+              return <Customer key={c._id} id={c._id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job} />
             }) :
               <TableRow>
                 <TableCell colSpan="6" align="center">

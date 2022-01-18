@@ -39,6 +39,13 @@ router.post('/customers',(req,res)=>{
         });
     });
 })
+router.post('/remove',(req,res)=>{
+    Customer.findOneAndDelete({_id:req.body.id})
+    .exec((err,doc)=>{
+        if(err) return res.status(400).send(err)
+        res.status(200).json({success:true,doc})
+    })
+})
 /*router.get("/auth", auth, (req, res) => {
     res.status(200).json({
         _id: req.user._id,

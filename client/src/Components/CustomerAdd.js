@@ -1,5 +1,5 @@
-import React,{useState} from 'react'
-import { post } from 'axios';
+import React, { useState } from 'react'
+import Axios, { post } from 'axios';
 
 class CustomerAdd extends React.Component {
     constructor(props) {
@@ -20,9 +20,19 @@ class CustomerAdd extends React.Component {
     handleFormSubmit(e) {
         e.preventDefault()
         this.addCustomer()
+        this.props.stateRefresh()
+        /*this.addCustomer()
             .then((response) => {
                 console.log(response.data);
-            })
+            })*/
+        this.setState({
+            file: null,
+            userName: '',
+            birthday: '',
+            gender: '',
+            job: '',
+            fileName: ''
+        })
     }
     handleFileChange(e) {
         this.setState({
@@ -36,7 +46,7 @@ class CustomerAdd extends React.Component {
         this.setState(nextState);
     }
     addCustomer() {
-        const url = '/api/customers';
+        /*const url = '/api/customers';
         const formData = new FormData();
         formData.append('image', this.state.file)
         formData.append('name', this.state.userName)
@@ -47,8 +57,26 @@ class CustomerAdd extends React.Component {
             headers: {
                 'content-type': 'multipart/form-data'
             }
+        }*/
+        var variable = {
+            image: this.state.file,
+            name: this.state.userName,
+            birthday: this.state.birthday,
+            gender: this.state.gender,
+            job: this.state.job
         }
-        return post(url, formData, config)
+        console.log(variable)
+        Axios.post('/api/customers', variable)
+            .then(response => {
+                console.log(variable)
+                if (response.data.success) {
+                    console.log(response.data.result)
+                } else {
+                    alert('커멘트를 저장하지 못했습니다.')
+                }
+            })
+        return true
+        //return post(url, formData, config)
     }
     render() {
         return (

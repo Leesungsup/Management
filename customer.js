@@ -29,6 +29,16 @@ router.get('/customers',(req,res)=>{
         return res.status(200).send(datas);
     });
 })
+router.post('/customers',(req,res)=>{
+    console.log("uploads", req.body.name)
+    var newCustomer = new Customer(req.body);
+    newCustomer.save((err,doc)=>{
+        if(err) return res.json({ success: false, err });
+        return res.status(200).json({
+            success: true
+        });
+    });
+})
 /*router.get("/auth", auth, (req, res) => {
     res.status(200).json({
         _id: req.user._id,
